@@ -1,0 +1,10 @@
+.counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  &__text {
+    min-width: 24px;
+    text-align: center;
+  }
+}

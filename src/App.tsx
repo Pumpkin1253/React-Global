@@ -1,9 +1,10 @@
 import "./App.scss";
+import { HomePage } from "./feature/homepage/components";
 
 function App() {
   return (
     <>
-      <h1>Hi!</h1>
+      <HomePage></HomePage>
     </>
   );
 }
