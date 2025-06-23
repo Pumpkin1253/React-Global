@@ -1,0 +1,23 @@
+.search {
+  display: flex;
+
+  &__field {
+    padding-left: 20px;
+    width: 700px;
+    height: 57px;
+    opacity: 80%;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    background-color: #323232CC;
+  }
+
+  &__btn {
+    margin-left: 14px;
+    width: 233px;
+    height: 57px;
+    border-radius: 4px;
+    font-size: 20px;
+    background-color: #F65261;
+  }
+}
