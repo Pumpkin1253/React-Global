@@ -1,4 +1,4 @@
-import "./GenreList.scss";
+import styles from "./GenreList.module.scss";
 import type { Genre } from "../../interfaces/homepage.interfaces";
 
 export interface GenreListProps {
@@ -9,12 +9,12 @@ export interface GenreListProps {
 
 export function GenreList(props: GenreListProps) {
   return (
-    <div className="genre-list">
+    <div className={styles.genreList}>
       {props.genres.map((genre) => (
         <div
-          className={`genre-list__item ${
+          className={`${styles.genreListItem} ${
             props.selectedGenre.id === genre.id
-              ? "genre-list__item--selected"
+              ? styles.genreListItemSelected
               : ""
           }`}
           key={genre.id}
