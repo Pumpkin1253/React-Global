@@ -1,5 +1,5 @@
 import React from "react";
-import "./Counter.scss";
+import styles from "./Counter.module.scss";
 
 export interface CounterProps {
   initialValue: number;
@@ -31,10 +31,10 @@ export class Counter extends React.Component<CounterProps, CounterState> {
     return React.createElement(
       "div",
       {
-        className: "counter",
+        className: styles.counter,
       },
       React.createElement("button", { onClick: this.decrement }, "–"),
-      React.createElement("span", { className: "counter__text" }, count),
+      React.createElement("span", { className: styles.counterText }, count),
       React.createElement("button", { onClick: this.increment }, "+")
     );
   }

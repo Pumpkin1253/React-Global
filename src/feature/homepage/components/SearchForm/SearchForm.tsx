@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./SearchForm.scss";
+import styles from "./SearchForm.module.scss";
 
 export interface SearchFormProps {
   initialQuery: string;
@@ -10,15 +10,19 @@ export function SearchForm(props: SearchFormProps) {
   const [query, setQuery] = useState<string>(props.initialQuery);
 
   return (
-    <div className="search">
+    <div className={styles.search}>
       <input
-        className="search__field"
-        value={query}
-        onChange={(e) => setQuery(e.currentTarget.value)}
+        className={styles.searchField}
         type="text"
         placeholder="What do you want to watch?"
+        value={query}
+        onChange={(e) => setQuery(e.currentTarget.value)}
+        onKeyDown={() => props.onSearch(query)}
       />
-      <button className="search__btn" onClick={() => props.onSearch(query)}>
+      <button
+        className={styles.searchBtn}
+        onClick={() => props.onSearch(query)}
+      >
         Search
       </button>
     </div>

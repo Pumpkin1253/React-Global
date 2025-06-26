@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Counter } from "../Counter";
 import { SearchForm } from "../SearchForm";
-import "./HomePage.scss";
+import styles from "./HomePage.module.scss";
 import { GenreList } from "../GenreList";
 import { genreList } from "../../constants/homepage.constants";
 import type { Genre } from "../../interfaces/homepage.interfaces";
@@ -23,7 +23,7 @@ export function HomePage() {
   };
 
   return (
-    <div className="homepage">
+    <div className={styles.homepage}>
       <SearchForm initialQuery={searchQuery} onSearch={search}></SearchForm>
       <div>You've searched for {searchQuery}</div>
 
@@ -34,7 +34,7 @@ export function HomePage() {
       ></GenreList>
       <div>You've selected {genre.name} genre(s)</div>
 
-      <div className="homepage__counter">
+      <div className={styles.homepageCounter}>
         <Counter initialValue={0}></Counter>
       </div>
     </div>

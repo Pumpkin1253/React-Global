@@ -1,15 +1,15 @@
-.genre-list {
-    margin-top: 30px;
+.genreList {
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
 
-  &__item {
+  &Item {
     margin-left: 30px;
     font-size: 16px;
     text-transform: uppercase;
     cursor: pointer;
 
-    &--selected {
+    &Selected {
       border-bottom: 2px solid #F65261;
     }
 
