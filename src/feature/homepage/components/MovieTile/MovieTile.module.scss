@@ -1,0 +1,33 @@
+.tile {
+    cursor: pointer;
+    
+    &Details {
+        margin-top: 22px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &Name {
+        margin-bottom: 8px;
+        font-size: 18px;
+        opacity: 70%;
+    }
+
+    &Genre {
+        font-size: 14px;
+        opacity: 50%;
+    }
+
+    &Date {
+        padding: 5px 10px;
+        border: 1px solid #979797;
+        border-radius: 4px;
+        font-size: 14px;
+        opacity: 70%;
+    }
+  
+    &Img {
+        width: 322px;
+        height: 455px;
+    }
+}

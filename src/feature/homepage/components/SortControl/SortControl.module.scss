@@ -1,0 +1,30 @@
+.sort {
+  font-size: 16px;
+  text-transform: uppercase;
+
+  label {
+    margin-right: 30px;
+    opacity: 60%;
+  }
+
+  select {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 8px 32px 8px 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.89px;
+    color: inherit;
+    cursor: pointer;
+
+    background-image: url('data:image/svg+xml;utf8,<svg fill="red" height="10" viewBox="0 0 20 20" width="10" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 20,0 10,10"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px;
+
+    &:focus {
+    outline: none;
+    }
+  } 
+}
