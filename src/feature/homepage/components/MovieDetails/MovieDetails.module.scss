@@ -1,0 +1,62 @@
+.movieDetails {
+  display: flex;
+  position: relative;
+
+  &Search {
+    position: absolute;
+    right: 0;
+  }
+
+  &Img {
+    width: 323px;
+    height: 486px;
+  }
+
+  &Info {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &Title {
+    display: flex;
+  }
+
+  &Name {
+    margin-right: 50px;
+    margin-bottom: 10px;
+    font-size: 40px;
+  }
+
+  &Rating {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+  }
+
+  &Genre {
+    margin-bottom: 30px;
+    font-size: 14px;
+    opacity: 50%;
+  }
+
+  &Meta {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #F65261;
+    
+    span:first-of-type {
+        margin-right: 50px;
+    }
+  }
+
+  &Description {
+    font-size: 20px;
+    opacity: 0.5;
+  }
+}
