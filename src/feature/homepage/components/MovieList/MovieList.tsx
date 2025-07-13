@@ -4,7 +4,9 @@ import styles from "./MovieList.module.scss";
 
 export interface MovieListProps {
   movieList: Movie[];
-  onClickMovie: (genre: Movie) => void;
+  onMovieDetails: (movie: Movie) => void;
+  onDeleteMovie: (movie: Movie) => void;
+  onEditMovie: (movie: Movie) => void;
 }
 
 export function MovieList(props: MovieListProps) {
@@ -19,7 +21,9 @@ export function MovieList(props: MovieListProps) {
           <MovieTile
             movie={movie}
             key={movie.name}
-            onClickMovie={props.onClickMovie}
+            onMovieDetails={props.onMovieDetails}
+            onDeleteMovie={props.onDeleteMovie}
+            onEditMovie={props.onEditMovie}
           ></MovieTile>
         ))}
       </div>

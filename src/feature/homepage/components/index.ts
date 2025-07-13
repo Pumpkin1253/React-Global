@@ -6,3 +6,7 @@ export {MovieTile} from './MovieTile';
 export {MovieList} from './MovieList';
 export {MovieDetails} from './MovieDetails';
 export {SortControl} from './SortControl';
+export {Modal} from './Modal';
+export {DeleteForm} from './DeleteForm';
+export {EditForm} from './EditForm';
+export {ModalWrapper} from './ModalWrapper';

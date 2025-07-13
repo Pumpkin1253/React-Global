@@ -10,6 +10,7 @@ export interface Movie {
   releasedYear: string;
   genres: Genre[];
   details: MovieDetailsIE;
+  url: string;
 }
 
 export interface MovieDetailsIE {

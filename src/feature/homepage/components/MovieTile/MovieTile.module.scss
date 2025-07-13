@@ -1,6 +1,42 @@
 .tile {
-    cursor: pointer;
-    
+    &Image {
+        position: relative;
+        cursor: pointer;
+    }
+
+    &Kebab {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        padding: 3px;
+        opacity: 40%;
+        background-color: black;
+    }
+
+    &Menu {
+        padding-top: 20px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        cursor: default;
+        background-color: #232323;
+
+        &Close {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            cursor: pointer;
+        }
+
+        &Item {
+            padding: 10px 25px;
+            cursor: pointer;
+            &:hover {
+                background-color: #F65261;
+            }
+        }
+    }
+
     &Details {
         margin-top: 22px;
         display: flex;
