@@ -20,3 +20,13 @@ export interface MovieDetailsIE {
 }
 
 export type SortOption = "releaseDate" | "title";
+
+export interface FormValues {
+  title: string;
+  releasedYear: string;
+  url: string;
+  rating: string;
+  duration: string;
+  description: string;
+  genreId: string;
+};

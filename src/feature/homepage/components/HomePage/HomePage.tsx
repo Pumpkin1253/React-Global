@@ -78,21 +78,6 @@ export function HomePage() {
     setModalType("add");
   };
 
-  const getLastMovieId = (): string => {
-    if (movieList.length === 0) return "0";
-
-    return movieList.reduce((currentMax, movie) => {
-      const a = BigInt(currentMax);
-      let b: bigint;
-      try {
-        b = BigInt(movie.id);
-      } catch {
-        return movie.id > currentMax ? movie.id : currentMax;
-      }
-      return b > a ? movie.id : currentMax;
-    }, movieList[0].id);
-  };
-
   const updateMovieList = (newMovieList: Movie[]) => {
     setMovieList(newMovieList);
     setModalType(null);
@@ -138,7 +123,6 @@ export function HomePage() {
         <ModalWrapper
           modalType={modalType}
           movie={currentMovie}
-          lastMovieId={getLastMovieId()}
           movieList={movieList}
           submitModal={updateMovieList}
           onClose={() => {
