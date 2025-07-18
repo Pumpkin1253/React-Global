@@ -1,9 +1,12 @@
-import { useState } from "react";
-// import { Counter } from "../Counter";
+import { useMemo, useState } from "react";
 import { SearchForm } from "../SearchForm";
 import styles from "./HomePage.module.scss";
 import { GenreList } from "../GenreList";
-import { genreList, movieData } from "../../constants/homepage.constants";
+import {
+  genreList,
+  movieData,
+  type ModalType,
+} from "../../constants/homepage.constants";
 import type {
   Genre,
   Movie,
@@ -12,16 +15,34 @@ import type {
 import { MovieList } from "../MovieList";
 import { MovieDetails } from "../MovieDetails";
 import { SortControl } from "../SortControl";
+import { ModalWrapper } from "../ModalWrapper";
 
 export interface HomePageProps {
   prop?: string;
 }
 
 export function HomePage() {
+  const [movieList, setMovieList] = useState<Movie[]>(movieData);
   const [searchQuery, setsearchQuery] = useState<string>("");
   const [genre, setGenre] = useState<Genre>(genreList[0]);
   const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
   const [sortOption, setSortOption] = useState<SortOption>("releaseDate");
+
+  const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
+  const [modalType, setModalType] = useState<ModalType | null>(null);
+
+  useMemo(() => {
+    let sorted = [];
+
+    if (sortOption == "releaseDate") {
+      sorted = movieList.sort(
+        (a, b) => parseInt(a.releasedYear) - parseInt(b.releasedYear)
+      );
+    } else {
+      sorted = movieList.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    setMovieList(sorted);
+  }, [sortOption, movieList]);
 
   const search = (query: string) => {
     setsearchQuery(query);
@@ -43,14 +64,23 @@ export function HomePage() {
     setSortOption(value);
   };
 
-  const sortedMovieData = (): Movie[] => {
-    if (sortOption == "releaseDate") {
-      return movieData.sort(
-        (a, b) => parseInt(a.releasedYear) - parseInt(b.releasedYear)
-      );
-    } else {
-      return movieData.sort((a, b) => a.name.localeCompare(b.name));
-    }
+  const showDeleteForm = (movie: Movie) => {
+    setModalType("delete");
+    setCurrentMovie(movie);
+  };
+
+  const showEditForm = (movie: Movie) => {
+    setModalType("edit");
+    setCurrentMovie(movie);
+  };
+
+  const showAddForm = () => {
+    setModalType("add");
+  };
+
+  const updateMovieList = (newMovieList: Movie[]) => {
+    setMovieList(newMovieList);
+    setModalType(null);
   };
 
   return (
@@ -61,7 +91,12 @@ export function HomePage() {
           onShowSearchForm={showSearch}
         ></MovieDetails>
       ) : (
-        <SearchForm initialQuery={searchQuery} onSearch={search}></SearchForm>
+        <div className={styles.header}>
+          <button className={styles.headerButton} onClick={showAddForm}>
+            +
+          </button>
+          <SearchForm initialQuery={searchQuery} onSearch={search}></SearchForm>
+        </div>
       )}
 
       <div className={styles.homepageControls}>
@@ -78,13 +113,23 @@ export function HomePage() {
       </div>
 
       <MovieList
-        movieList={sortedMovieData()}
-        onClickMovie={selectMovie}
+        movieList={movieList}
+        onMovieDetails={selectMovie}
+        onDeleteMovie={showDeleteForm}
+        onEditMovie={showEditForm}
       ></MovieList>
 
-      {/* <div className={styles.homepageCounter}>
-        <Counter initialValue={0}></Counter>
-      </div> */}
+      {modalType && (
+        <ModalWrapper
+          modalType={modalType}
+          movie={currentMovie}
+          movieList={movieList}
+          submitModal={updateMovieList}
+          onClose={() => {
+            setModalType(null);
+          }}
+        ></ModalWrapper>
+      )}
     </div>
   );
 }

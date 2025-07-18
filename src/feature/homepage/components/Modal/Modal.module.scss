@@ -1,0 +1,21 @@
+.modal{
+
+    &Backdrop {
+        position: fixed;
+        inset: 0;                    
+        background: rgba(0, 0, 0, .5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+    }
+
+    &Content {
+        background: #232323;
+        padding: 1.5rem;
+        border-radius: .5rem;
+        max-width: 90%;
+        max-height: 90%;
+        overflow: auto;
+    }
+}

@@ -16,6 +16,7 @@ export const movieData: Movie[] = [
     releasedYear: '1963',
     image: images.escape,
     genres: [{name: 'Adventure', id: '6'}, {name: 'Drama', id: '7'}],
+    url: '',
     details:   {
       rating: "8.2",
       duration: "2h 52m",
@@ -28,6 +29,7 @@ export const movieData: Movie[] = [
     releasedYear: '2012',
     image: images.lol,
     genres: [{name: 'Comedy', id: '3'}],
+    url: '',
     details:   {
       rating: "6.8",
       duration: "1h 45m",
@@ -40,6 +42,7 @@ export const movieData: Movie[] = [
     releasedYear: '2014',
     image: images.edge,
     genres: [{name: 'Action', id: '8'}, {name: 'Sci-Fi', id: '9'}, {name: 'Thriller', id: '10'}],
+    url: '',
     details:   {
       rating: "7.9",
       duration: "1h 53m",
@@ -52,6 +55,7 @@ export const movieData: Movie[] = [
     releasedYear: '2006',
     image: images.big,
     genres: [{name: 'Comedy', id: '3'}],
+    url: '',
     details:   {
       rating: "7.1",
       duration: "1h 40m",
@@ -59,3 +63,5 @@ export const movieData: Movie[] = [
     }
   },
 ];
+
+export type ModalType = "edit" | "add" | "delete" | null; 
