@@ -5,7 +5,7 @@ import { SortControl, type SortControlProps } from "../SortControl";
 describe("<SortControl />", () => {
   const mockChange = vi.fn();
   const defaultProps: SortControlProps = {
-    sortBy: "releaseDate",
+    sortBy: "release_date",
     onChange: mockChange,
   };
 

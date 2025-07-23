@@ -29,11 +29,7 @@ export const EditForm: Story = {
       name: "Edge of Tomorrow",
       releasedYear: "2014",
       image: "",
-      genres: [
-        { name: "Action", id: "8" },
-        { name: "Sci-Fi", id: "9" },
-        { name: "Thriller", id: "10" },
-      ],
+      genres: ["Action", "Sci-Fi", "Thriller"],
       url: "",
       details: {
         rating: "7.9",
@@ -57,11 +53,7 @@ export const DeleteForm: Story = {
       name: "Edge of Tomorrow",
       releasedYear: "2014",
       image: "",
-      genres: [
-        { name: "Action", id: "8" },
-        { name: "Sci-Fi", id: "9" },
-        { name: "Thriller", id: "10" },
-      ],
+      genres: ["Action", "Sci-Fi", "Thriller"],
       url: "",
       details: {
         rating: "7.9",

@@ -20,7 +20,7 @@ export function MovieForm(props: MovieFormProps) {
       rating: props.movie?.details.rating ?? "",
       duration: props.movie?.details.duration ?? "",
       description: props.movie?.details.description ?? "",
-      genreId: props.movie?.genres[0]?.id ?? "",
+      genre: props.movie?.genres[0] ?? "",
     },
   });
 
@@ -62,11 +62,11 @@ export function MovieForm(props: MovieFormProps) {
         <div className={styles.field}>
           <label>GENRE</label>
           <div className={styles.iconInput}>
-            <select {...register("genreId")}>
+            <select {...register("genre")}>
               <option value="">{`Select Genre`}</option>
               {genreList.map((genre) => (
-                <option key={genre.id} value={genre.id}>
-                  {genre.name}
+                <option key={genre} value={genre}>
+                  {genre}
                 </option>
               ))}
             </select>

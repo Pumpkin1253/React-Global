@@ -1,14 +1,10 @@
-export interface Genre {
-    name: string;
-    id: string;
-}
 
 export interface Movie {
   id: string;
   image: string;
   name: string;
   releasedYear: string;
-  genres: Genre[];
+  genres: string[];
   details: MovieDetailsIE;
   url: string;
 }
@@ -19,8 +15,6 @@ export interface MovieDetailsIE {
   description: string;
 }
 
-export type SortOption = "releaseDate" | "title";
-
 export interface FormValues {
   title: string;
   releasedYear: string;
@@ -28,5 +22,27 @@ export interface FormValues {
   rating: string;
   duration: string;
   description: string;
-  genreId: string;
+  genre: string;
 };
+
+export interface ApiData {
+  data: ApiMovie[];
+  limit: number;
+  offset: number;
+  totalAmount: number;
+}
+
+export interface ApiMovie {
+  id: number;
+  budget: number;
+  genres: string[];
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  tagline: number;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+}

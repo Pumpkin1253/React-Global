@@ -67,7 +67,7 @@ export function MovieTile(props: MovieTileProps) {
         <div>
           <div className={styles.tileName}>{props.movie.name}</div>
           <span className={styles.tileGenre}>
-            {props.movie.genres.map((genre) => genre.name).join(", ")}
+            {props.movie.genres.map((genre) => genre).join(", ")}
           </span>
         </div>
         <div>

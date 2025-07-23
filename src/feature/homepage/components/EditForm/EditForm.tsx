@@ -11,7 +11,7 @@ export function EditForm(props: EditFormProps) {
   const formTitle = "Edit Movie";
 
   const onSubmit = (data: FormValues) => {
-    const selectedGenre = genreList.find((genre) => genre.id === data.genreId);
+    const selectedGenre = genreList.find((genre) => genre === data.genre);
     const updatedMovie = {
       ...props.movie,
       name: data.title,
