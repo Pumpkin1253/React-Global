@@ -1,10 +1,15 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.scss";
 import { HomePage } from "./feature/homepage/components";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <>
-      <HomePage></HomePage>
+      <QueryClientProvider client={queryClient}>
+        <HomePage></HomePage>
+      </QueryClientProvider>
     </>
   );
 }
