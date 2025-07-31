@@ -27,7 +27,7 @@ export function AddForm(props: AddFormProps) {
   };
 
   const onSubmit = (data: FormValues) => {
-    const selectedGenre = genreList.find((genre) => genre.id === data.genreId);
+    const selectedGenre = genreList.find((genre) => genre === data.genre);
     const countId = parseInt(getLastMovieId()) + 1;
 
     const newMovie = {

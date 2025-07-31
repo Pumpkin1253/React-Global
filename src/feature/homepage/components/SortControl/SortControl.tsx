@@ -1,4 +1,4 @@
-import type { SortOption } from "../../interfaces/homepage.interfaces";
+import type { SortOption } from "../../constants/homepage.constants";
 import styles from "./SortControl.module.scss";
 
 export interface SortControlProps {
@@ -15,7 +15,7 @@ export function SortControl(props: SortControlProps) {
         value={props.sortBy}
         onChange={(e) => props.onChange(e.target.value as SortOption)}
       >
-        <option value="releaseDate">Release Date</option>
+        <option value="release_date">Release Date</option>
         <option value="title">Title</option>
       </select>
     </div>

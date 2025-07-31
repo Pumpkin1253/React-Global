@@ -10,11 +10,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const genres = [
-  { name: "All", id: "1" },
-  { name: "Documentary", id: "2" },
-  { name: "Comedy", id: "3" },
-];
+const genres = ["All", "Documentary", "Comedy"];
 
 export const Default: Story = {
   args: {

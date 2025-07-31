@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import styles from "./../GenreList.module.scss";
-import type { Genre } from "../../../interfaces/homepage.interfaces";
 import { GenreList } from "../GenreList";
 import { vi } from "vitest";
 
@@ -14,11 +13,7 @@ describe("GenreList component", () => {
       />
     );
 
-  const genres: Genre[] = [
-    { id: "1", name: "Action" },
-    { id: "2", name: "Comedy" },
-    { id: "3", name: "Drama" },
-  ];
+  const genres = ["All", "Documentary", "Comedy"];
   const selectedGenre = genres[1];
   const onSelectGenre = vi.fn();
 
@@ -29,13 +24,13 @@ describe("GenreList component", () => {
   it("renders all genres passed in props", () => {
     renderComponent();
     genres.forEach((genre) => {
-      expect(screen.getByText(genre.name)).toBeInTheDocument();
+      expect(screen.getByText(genre)).toBeInTheDocument();
     });
   });
 
   it("highlights the selected genre passed in props", () => {
     renderComponent();
-    const selectedElement = screen.getByText(selectedGenre.name);
+    const selectedElement = screen.getByText(selectedGenre);
     expect(selectedElement).toHaveClass(styles.genreListItemSelected);
   });
 
@@ -43,7 +38,7 @@ describe("GenreList component", () => {
     renderComponent();
     const genreToClick = genres[0];
 
-    const genreElement = screen.getByText(genreToClick.name);
+    const genreElement = screen.getByText(genreToClick);
     fireEvent.click(genreElement);
 
     expect(onSelectGenre).toHaveBeenCalledTimes(1);

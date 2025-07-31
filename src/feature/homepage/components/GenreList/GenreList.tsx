@@ -1,10 +1,9 @@
 import styles from "./GenreList.module.scss";
-import type { Genre } from "../../interfaces/homepage.interfaces";
 
 export interface GenreListProps {
-  genres: Genre[];
-  selectedGenre: Genre;
-  onSelectGenre: (genre: Genre) => void;
+  genres: string[];
+  selectedGenre: string;
+  onSelectGenre: (genre: string) => void;
 }
 
 export function GenreList(props: GenreListProps) {
@@ -13,14 +12,12 @@ export function GenreList(props: GenreListProps) {
       {props.genres.map((genre) => (
         <div
           className={`${styles.genreListItem} ${
-            props.selectedGenre.id === genre.id
-              ? styles.genreListItemSelected
-              : ""
+            props.selectedGenre === genre ? styles.genreListItemSelected : ""
           }`}
-          key={genre.id}
+          key={genre}
           onClick={() => props.onSelectGenre(genre)}
         >
-          {genre.name}
+          {genre}
         </div>
       ))}
     </div>

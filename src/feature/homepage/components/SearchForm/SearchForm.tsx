@@ -17,7 +17,6 @@ export function SearchForm(props: SearchFormProps) {
         placeholder="What do you want to watch?"
         value={query}
         onChange={(e) => setQuery(e.currentTarget.value)}
-        onKeyDown={() => props.onSearch(query)}
       />
       <button
         className={styles.searchBtn}

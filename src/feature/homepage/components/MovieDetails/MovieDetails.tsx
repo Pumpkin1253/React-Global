@@ -28,7 +28,7 @@ export function MovieDetails(props: MovieDetailsProps) {
         </div>
 
         <div className={styles.movieDetailsGenre}>
-          {props.movie.genres.map((genre) => genre.name).join(", ")}
+          {props.movie.genres.map((genre) => genre).join(", ")}
         </div>
         <div className={styles.movieDetailsMeta}>
           <span>{props.movie.releasedYear}</span>

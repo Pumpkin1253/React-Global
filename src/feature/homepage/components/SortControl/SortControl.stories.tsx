@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { SortControl } from './SortControl';
+import { SortControl } from "./SortControl";
 
 const meta = {
   component: SortControl,
@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    sortBy: "releaseDate",
-    onChange: () => {}
-  }
+    sortBy: "release_date",
+    onChange: () => {},
+  },
 };
