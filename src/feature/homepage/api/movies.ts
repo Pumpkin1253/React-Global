@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { Movie, ApiData } from "../interfaces/homepage.interfaces";
+import { formatDuration } from "./common";
 
 export const fetchMovies = async ({
   searchQuery,
@@ -36,15 +37,3 @@ export const fetchMovies = async ({
   }));
 };
 
-  const formatDuration = (totalMinutes: number) => {
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
-
-    if (hours > 0 && minutes > 0) {
-      return `${hours}h ${minutes}m`;
-    }
-    if (hours > 0) {
-      return `${hours}h`;
-    }
-    return `${minutes}m`;
-  };

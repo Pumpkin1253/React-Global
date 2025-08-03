@@ -11,12 +11,17 @@ export function SortControl(props: SortControlProps) {
     <div className={styles.sort}>
       <label htmlFor="sort-select">Sort by</label>
       <select
+        data-cy="sort-select"
         id="sort-select"
         value={props.sortBy}
         onChange={(e) => props.onChange(e.target.value as SortOption)}
       >
-        <option value="release_date">Release Date</option>
-        <option value="title">Title</option>
+        <option data-cy="sort-date" value="release_date">
+          Release Date
+        </option>
+        <option data-cy="sort-title" value="title">
+          Title
+        </option>
       </select>
     </div>
   );

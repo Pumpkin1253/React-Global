@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { SearchForm } from "../SearchForm";
+import { useEffect, useState } from "react";
 import styles from "./HomePage.module.scss";
 import { GenreList } from "../GenreList";
 import {
@@ -9,11 +8,11 @@ import {
 } from "../../constants/homepage.constants";
 import type { Movie } from "../../interfaces/homepage.interfaces";
 import { MovieList } from "../MovieList";
-import { MovieDetails } from "../MovieDetails";
 import { SortControl } from "../SortControl";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchMovies } from "../../api/movies";
 import { ModalWrapper } from "../ModalWrapper";
+import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
 
 export interface HomePageProps {
   prop?: string;
@@ -24,11 +23,19 @@ export function HomePage() {
 
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [genreFilter, setGenreFilter] = useState<string>(genreList[0]);
-  const [movieDetails, setMovieDetails] = useState<Movie | null>(null);
   const [sortOption, setSortOption] = useState<SortOption>("release_date");
 
   const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
   const [modalType, setModalType] = useState<ModalType | null>(null);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setGenreFilter(searchParams.get("filter") || "");
+    setSearchQuery(searchParams.get("search") || "");
+    setSortOption((searchParams.get("sortBy") as SortOption) || "release_date");
+  }, [searchParams]);
 
   const {
     data: movieList = [],
@@ -49,23 +56,23 @@ export function HomePage() {
   if (isError && error instanceof Error) return <p>Error: {error.message}</p>;
 
   const search = (query: string) => {
-    setSearchQuery(query);
+    setQueryParam("search", query);
   };
 
   const selectGenre = (selectedGenre: string) => {
-    setGenreFilter(selectedGenre);
+    setQueryParam("filter", selectedGenre);
   };
 
   const selectMovie = (movie: Movie) => {
-    setMovieDetails(movie);
+    navigate(`${movie.id}`);
   };
 
   const showSearch = () => {
-    setMovieDetails(null);
+    navigate("/");
   };
 
   const sortControlChange = (value: SortOption) => {
-    setSortOption(value);
+    setQueryParam("sortBy", value);
   };
 
   const showDeleteForm = (movie: Movie) => {
@@ -90,21 +97,28 @@ export function HomePage() {
     setModalType(null);
   };
 
+  const setQueryParam = (param: string, value: string | SortOption) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (value) {
+      params.set(param, value);
+    } else {
+      params.delete(param);
+    }
+
+    setSearchParams(params);
+  };
+
+  const outletContext = {
+    initialQuery: searchQuery,
+    onSearch: search,
+    onShowAddForm: showAddForm,
+    showSearch: showSearch,
+  };
+
   return (
     <div className={styles.homepage}>
-      {movieDetails ? (
-        <MovieDetails
-          movie={movieDetails}
-          onShowSearchForm={showSearch}
-        ></MovieDetails>
-      ) : (
-        <div className={styles.header}>
-          <button className={styles.headerButton} onClick={showAddForm}>
-            +
-          </button>
-          <SearchForm initialQuery={searchQuery} onSearch={search}></SearchForm>
-        </div>
-      )}
+      <Outlet context={outletContext} />
 
       <div className={styles.homepageControls}>
         <GenreList
