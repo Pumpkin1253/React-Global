@@ -11,6 +11,7 @@ export function GenreList(props: GenreListProps) {
     <div className={styles.genreList}>
       {props.genres.map((genre) => (
         <div
+          data-cy="genre"
           className={`${styles.genreListItem} ${
             props.selectedGenre === genre ? styles.genreListItemSelected : ""
           }`}

@@ -12,3 +12,5 @@ export {EditForm} from './EditForm';
 export {ModalWrapper} from './ModalWrapper';
 export {MovieForm} from './MovieForm';
 export {AddForm} from './AddForm';
+export {SearchFormWrapper} from './SearchFormWrapper';
+export {MovieDetailsWrapper} from './MovieDetailsWrapper';

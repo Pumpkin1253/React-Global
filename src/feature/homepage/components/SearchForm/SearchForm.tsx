@@ -12,6 +12,7 @@ export function SearchForm(props: SearchFormProps) {
   return (
     <div className={styles.search}>
       <input
+        data-cy="search-input"
         className={styles.searchField}
         type="text"
         placeholder="What do you want to watch?"
@@ -19,6 +20,7 @@ export function SearchForm(props: SearchFormProps) {
         onChange={(e) => setQuery(e.currentTarget.value)}
       />
       <button
+        data-cy="search-input-btn"
         className={styles.searchBtn}
         onClick={() => props.onSearch(query)}
       >

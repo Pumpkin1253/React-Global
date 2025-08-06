@@ -11,6 +11,7 @@ export function MovieDetails(props: MovieDetailsProps) {
   return (
     <div className={styles.movieDetails}>
       <button
+        data-cy="movie-search"
         className={styles.movieDetailsSearch}
         onClick={props.onShowSearchForm}
       >
