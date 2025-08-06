@@ -1,24 +1,33 @@
-import type { Movie } from "../../interfaces/homepage.interfaces";
+import { useOutletContext, useParams } from "react-router-dom";
+import { Modal } from "../Modal";
 import styles from "./DeleteForm.module.scss";
+import { deleteMovie } from "../../api/movie";
 
-export interface DeleteFormProps {
-  movie: Movie;
-  movieList: Movie[];
-  onDeleteMovie: (movie: Movie[]) => void;
+interface DeleteFormContextType {
+  onCloseModal: () => void;
+  onSubmitModal: () => void;
 }
 
-export function DeleteForm(props: DeleteFormProps) {
+export function DeleteForm() {
+  const { onCloseModal, onSubmitModal } =
+    useOutletContext<DeleteFormContextType>();
+  const params = useParams();
+
   const onSubmit = () => {
-    props.onDeleteMovie(
-      props.movieList.filter((movie) => movie.id !== props.movie.id)
-    );
+    if (params.movieId)
+      deleteMovie(params.movieId).finally(() => onSubmitModal());
   };
 
   return (
-    <div className={styles.deleteForm}>
-      <h2>Delete Movie</h2>
-      <p>Are you sure you want to delete this movie?</p>
-      <button onClick={() => onSubmit()}>Confirm</button>
-    </div>
+    <Modal
+      modalContent={
+        <div className={styles.deleteForm}>
+          <h2>Delete Movie</h2>
+          <p>Are you sure you want to delete this movie?</p>
+          <button onClick={() => onSubmit()}>Confirm</button>
+        </div>
+      }
+      onClose={onCloseModal}
+    ></Modal>
   );
 }

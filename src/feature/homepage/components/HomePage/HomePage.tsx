@@ -1,35 +1,31 @@
 import { useEffect, useState } from "react";
 import styles from "./HomePage.module.scss";
 import { GenreList } from "../GenreList";
-import {
-  genreList,
-  type ModalType,
-  type SortOption,
-} from "../../constants/homepage.constants";
+import { genreList, type SortOption } from "../../constants/homepage.constants";
 import type { Movie } from "../../interfaces/homepage.interfaces";
 import { MovieList } from "../MovieList";
 import { SortControl } from "../SortControl";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { fetchMovies } from "../../api/movies";
-import { ModalWrapper } from "../ModalWrapper";
-import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Outlet,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 export interface HomePageProps {
   prop?: string;
 }
 
 export function HomePage() {
-  const queryClient = useQueryClient();
-
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [genreFilter, setGenreFilter] = useState<string>(genreList[0]);
   const [sortOption, setSortOption] = useState<SortOption>("release_date");
 
-  const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
-  const [modalType, setModalType] = useState<ModalType | null>(null);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     setGenreFilter(searchParams.get("filter") || "");
@@ -42,6 +38,7 @@ export function HomePage() {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
     queryKey: ["movies", searchQuery, genreFilter, sortOption],
     queryFn: () =>
@@ -64,7 +61,7 @@ export function HomePage() {
   };
 
   const selectMovie = (movie: Movie) => {
-    navigate(`${movie.id}`);
+    navigate(`${movie.id}${location.search}`);
   };
 
   const showSearch = () => {
@@ -76,25 +73,15 @@ export function HomePage() {
   };
 
   const showDeleteForm = (movie: Movie) => {
-    setModalType("delete");
-    setCurrentMovie(movie);
+    navigate(`/delete/${movie.id}${location.search}`);
   };
 
   const showEditForm = (movie: Movie) => {
-    setModalType("edit");
-    setCurrentMovie(movie);
+    navigate(`/edit/${movie.id}${location.search}`);
   };
 
   const showAddForm = () => {
-    setModalType("add");
-  };
-
-  const updateMovieList = (newMovieList: Movie[]) => {
-    queryClient.setQueryData<Movie[]>(
-      ["movies", searchQuery, genreFilter, sortOption],
-      newMovieList
-    );
-    setModalType(null);
+    navigate(`/new${location.search}`);
   };
 
   const setQueryParam = (param: string, value: string | SortOption) => {
@@ -114,6 +101,13 @@ export function HomePage() {
     onSearch: search,
     onShowAddForm: showAddForm,
     showSearch: showSearch,
+    onCloseModal: () => {
+      navigate(`/${location.search}`);
+    },
+    onSubmitModal: () => {
+      refetch();
+      navigate(`/${location.search}`);
+    },
   };
 
   return (
@@ -139,18 +133,6 @@ export function HomePage() {
         onDeleteMovie={showDeleteForm}
         onEditMovie={showEditForm}
       ></MovieList>
-
-      {modalType && (
-        <ModalWrapper
-          modalType={modalType}
-          movie={currentMovie}
-          movieList={movieList}
-          submitModal={updateMovieList}
-          onClose={() => {
-            setModalType(null);
-          }}
-        ></ModalWrapper>
-      )}
     </div>
   );
 }
