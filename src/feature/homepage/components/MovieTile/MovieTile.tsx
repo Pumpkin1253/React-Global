@@ -33,7 +33,7 @@ export function MovieTile(props: MovieTileProps) {
     <div className={styles.tile}>
       <div className={styles.tileImage}>
         <img
-          src={props.movie.image}
+          src={props.movie.poster_path}
           className={styles.tileImg}
           onClick={() => props.onMovieDetails(props.movie)}
         />
@@ -65,13 +65,13 @@ export function MovieTile(props: MovieTileProps) {
       </div>
       <div className={styles.tileDetails}>
         <div>
-          <div className={styles.tileName}>{props.movie.name}</div>
+          <div className={styles.tileName}>{props.movie.title}</div>
           <span className={styles.tileGenre}>
             {props.movie.genres.map((genre) => genre).join(", ")}
           </span>
         </div>
         <div>
-          <div className={styles.tileDate}>{props.movie.releasedYear}</div>
+          <div className={styles.tileDate}>{props.movie.release_date}</div>
         </div>
       </div>
     </div>

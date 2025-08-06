@@ -1,6 +1,7 @@
 import { FaSearch } from "react-icons/fa";
 import type { Movie } from "../../interfaces/homepage.interfaces";
 import styles from "./MovieDetails.module.scss";
+import { formatRuntime } from "../../../../core/common/functions";
 
 export interface MovieDetailsProps {
   movie: Movie;
@@ -18,13 +19,13 @@ export function MovieDetails(props: MovieDetailsProps) {
         <FaSearch />
       </button>
 
-      <img src={props.movie.image} className={styles.movieDetailsImg} />
+      <img src={props.movie.poster_path} className={styles.movieDetailsImg} />
 
       <div className={styles.movieDetailsInfo}>
         <div className={styles.movieDetailsTitle}>
-          <div className={styles.movieDetailsName}>{props.movie.name}</div>
+          <div className={styles.movieDetailsName}>{props.movie.title}</div>
           <div className={styles.movieDetailsRating}>
-            {props.movie.details.rating}
+            {props.movie.vote_average}
           </div>
         </div>
 
@@ -32,11 +33,11 @@ export function MovieDetails(props: MovieDetailsProps) {
           {props.movie.genres.map((genre) => genre).join(", ")}
         </div>
         <div className={styles.movieDetailsMeta}>
-          <span>{props.movie.releasedYear}</span>
-          <span>{props.movie.details.duration}</span>
+          <span>{props.movie.release_date}</span>
+          <span>{formatRuntime(props.movie.runtime)}</span>
         </div>
         <div className={styles.movieDetailsDescription}>
-          {props.movie.details.description}
+          {props.movie.overview}
         </div>
       </div>
     </div>

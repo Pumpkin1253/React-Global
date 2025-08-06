@@ -1,6 +1,5 @@
 import axios from "axios";
 import type { Movie, ApiData } from "../interfaces/homepage.interfaces";
-import { formatDuration } from "./common";
 
 export const fetchMovies = async ({
   searchQuery,
@@ -22,18 +21,6 @@ export const fetchMovies = async ({
     params,
   });
 
-  return response.data.data.map((apiMovie) => ({
-    id: apiMovie.id.toString(),
-    image: apiMovie.poster_path,
-    name: apiMovie.title,
-    releasedYear: apiMovie.release_date,
-    genres: apiMovie.genres,
-    url: "",
-    details: {
-      rating: apiMovie.vote_average.toString(),
-      duration: formatDuration(apiMovie.runtime),
-      description: apiMovie.overview,
-    },
-  }));
+  return response.data.data;
 };
 

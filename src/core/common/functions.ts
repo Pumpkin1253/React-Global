@@ -1,4 +1,4 @@
-export const formatDuration = (totalMinutes: number) => {
+export const formatRuntime = (totalMinutes: number) => {
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
 
@@ -9,4 +9,4 @@ export const formatDuration = (totalMinutes: number) => {
       return `${hours}h`;
     }
     return `${minutes}m`;
-  };
+};

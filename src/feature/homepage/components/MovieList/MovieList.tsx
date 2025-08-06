@@ -20,7 +20,7 @@ export function MovieList(props: MovieListProps) {
         {props.movieList.map((movie) => (
           <MovieTile
             movie={movie}
-            key={movie.name}
+            key={movie.id}
             onMovieDetails={props.onMovieDetails}
             onDeleteMovie={props.onDeleteMovie}
             onEditMovie={props.onEditMovie}

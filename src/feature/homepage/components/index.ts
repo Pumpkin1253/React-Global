@@ -9,7 +9,6 @@ export {SortControl} from './SortControl';
 export {Modal} from './Modal';
 export {DeleteForm} from './DeleteForm';
 export {EditForm} from './EditForm';
-export {ModalWrapper} from './ModalWrapper';
 export {MovieForm} from './MovieForm';
 export {AddForm} from './AddForm';
 export {SearchFormWrapper} from './SearchFormWrapper';
